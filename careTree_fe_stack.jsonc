@@ -1,0 +1,145 @@
+// careTree stack & repo config
+// 2024-11-15
+
+{
+  "project": {
+    "name": "careTree",
+    "description": "careTree is a mutual aid platform enabling private, invite-only Circles for decentralized fund management and community support. Built as a Progressive Web App (PWA), it uses a Next.js frontend hosted on Vercel and a backend hosted on Internet Computer (ICP)."
+  },
+  "stack": {
+    // Frontend Stack
+    "frontend": {
+      "framework": "Next.js",
+      "hosting": "Vercel",
+      "libraries": ["Axios", "Agent JS", "React Testing Library", "Jest"],
+      "styling": "Tailwind CSS",
+      "testing": {
+        "unit_and_integration": ["Jest", "React Testing Library"],
+        "end_to_end": "Cypress (optional)"
+      },
+      "state_management": "React Context API (minimal global state)",
+      "authentication": "Internet Identity (ICP)"
+    },
+    // Backend Stack
+    "backend": {
+      "platform": "Internet Computer (ICP)",
+      "language": "Motoko",
+      "canisters": ["User Management Canister", "Circle Management Canister"],
+      "testing": "dfx test"
+    },
+    // CI/CD Configuration
+    "ci_cd": {
+      "platform": "GitHub Actions",
+      "frontend_workflow": {
+        "steps": [
+          "checkout_code",
+          "setup_node",
+          "install_dependencies",
+          "run_tests",
+          "build_frontend",
+          "deploy_to_vercel"
+        ]
+      },
+      "backend_workflow": {
+        "steps": [
+          "checkout_code",
+          "setup_dfinity_sdk",
+          "install_dependencies",
+          "start_local_dfx",
+          "deploy_canisters",
+          "run_tests"
+        ]
+      },
+      "secrets": ["VERCEL_TOKEN", "optional_environment_variables"]
+    },
+    // Project Management Stack
+    "project_management": {
+      "tool": "Notion",
+      "features": ["task management", "documentation", "sprints", "collaboration"]
+    }
+  },
+  "repository_structure": {
+    // Repository Structure
+    "root": {
+      "files": [
+        "README.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        ".gitignore",
+        "jest.setup.js",
+        "tailwind.config.js"
+      ],
+      "folders": {
+        ".github": {
+          "files": ["workflows/frontend.yml", "workflows/backend.yml"],
+          "description": "GitHub Actions workflows for CI/CD"
+        },
+        "frontend": {
+          "files": ["README.md", "package.json"],
+          "folders": {
+            "src": {
+              "folders": {
+                "components": "Reusable UI components",
+                "pages": "Next.js pages mapped to routes",
+                "hooks": "Custom React hooks",
+                "context": "React Context providers for shared state",
+                "utils": "Utility functions and helpers",
+                "assets": "Static assets (e.g., images, icons)"
+              }
+            },
+            "public": "Publicly accessible files (e.g., index.html, manifest.json)",
+            "tests": "Test files for unit and integration testing"
+          }
+        },
+        "backend": {
+          "files": ["README.md", "dfx.json", "package.json"],
+          "folders": {
+            "src": {
+              "folders": {
+                "canisters": {
+                  "user_management": {
+                    "files": ["user_management.mo"],
+                    "description": "Handles user authentication, profiles, and Circle memberships"
+                  },
+                  "circle_management": {
+                    "files": ["circle_management.mo"],
+                    "description": "Manages Circle data, contributions, and payouts"
+                  }
+                }
+              }
+            },
+            "tests": "Backend testing files for canisters",
+            "scripts": "Deployment and management scripts for canisters"
+          }
+        },
+        "docs": {
+          "description": "Documentation for developers and users (e.g., API references, deployment guides)"
+        },
+        "notebooks": {
+          "description": "Jupyter notebooks for data analysis or research"
+        }
+      }
+    }
+  },
+  "recommendations": {
+    // Recommendations for Future Enhancements
+    "testing_and_quality_assurance": {
+      "unit_tests": "Expand Jest tests for components and utility functions",
+      "end_to_end_tests": "Add Cypress for critical user workflows",
+      "code_coverage_analysis": "Integrate coverage reporting with Jest"
+    },
+    "developer_experience": {
+      "storybook": "Optional for isolated UI component development and documentation",
+      "linting_and_formatting": "Use ESLint and Prettier for consistent coding standards"
+    },
+    "observability_and_monitoring": {
+      "error_tracking": "Integrate Sentry for error reporting",
+      "analytics": "Add Plausible Analytics or Google Analytics for monitoring user behavior"
+    },
+    "security_and_privacy": {
+      "data_encryption": "Ensure data encryption in transit and at rest",
+      "compliance": "Evaluate GDPR and CCPA compliance for user data",
+      "regular_audits": "Conduct periodic security audits"
+    }
+  }
+}
