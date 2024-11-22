@@ -1,9 +1,14 @@
-const nextConfig = {
-  experimental: {
-    appDir: true, // Required for the `app` directory in Next.js
+const withPWA = require('next-pwa')({
+  dest: 'public',
+});
+
+const nextConfig = withPWA({
+  pwa: {
+    dest: "public", // Service worker and PWA files will be placed here
+    register: true,
+    skipWaiting: true,
+  disable: process.env.NODE_ENV === "development", // Disable SW in dev mode
   },
-  // Optional: Ensure static asset prefixes (if needed)
-  assetPrefix: "",
-};
+});
 
 export default nextConfig;
