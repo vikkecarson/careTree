@@ -3,16 +3,6 @@
     "caretree_backend": {
       "main": "src/caretree_backend/main.mo",
       "type": "motoko"
-    },
-    "caretree_frontend": {
-      "dependencies": [
-        "caretree_backend"
-      ],
-      "source": [
-        "src/caretree_frontend/dist"
-      ],
-      "type": "assets",
-      "workspace": "caretree_frontend"
     }
   },
   "defaults": {
