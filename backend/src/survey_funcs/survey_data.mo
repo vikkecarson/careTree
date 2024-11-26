@@ -2,18 +2,27 @@ import Debug "mo:base/Debug";
 import HashMap "mo:base/HashMap";
 import Principal "mo:base/Principal";
 import Time "mo:base/Time";
+import Nat "mo:base/Nat";
+import Text "mo:base/Text";
 
-actor SurveyData {
+
+actor SurveyCanister {
     // Types
     type SurveyResponse = {
         // TODO: Add survey fields
         respondent: Principal;
-        timestamp: Time.Time;
+        timestamp: Time.Time;  
+        email: Text.Text; 
+        name: Text.Text;
+        response: Text.Text;
+        
     };
 
     // Storage
     private stable var surveyCount : Nat = 0;
     private var surveys = HashMap.HashMap<Nat, SurveyResponse>(0, Nat.equal, Hash.hash);
+
+  
 
     // Functions to implement
     public shared(msg) func submitSurvey(/* TODO: Add parameters */) : async Nat {
